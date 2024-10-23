@@ -162,21 +162,16 @@ void AutomataPila::CompruebaAutomata() const {
  * @brief Imprime la información del autómata con pila.
  */
 void AutomataPila::Imprimir() const {
+  std::cout << "\033[0;31mAutómata con pila definido:\033[0m" << std::endl;
   std::cout << "Estados: ";
   for (const Estado& estado : estados_) {
     std::cout << estado.GetNombre() << " ";
   }
   std::cout << std::endl;
   std::cout << "Alfabeto de entrada: ";
-  for (const Simbolo& simbolo : alfabeto_entrada_.GetSimbolos()) {
-    std::cout << simbolo.GetSimbolo() << " ";
-  }
-  std::cout << std::endl;
+  GetAlfabetoEntrada().Imprimir();
   std::cout << "Alfabeto de la pila: ";
-  for (const Simbolo& simbolo : alfabeto_pila_.GetSimbolos()) {
-    std::cout << simbolo.GetSimbolo() << " ";
-  }
-  std::cout << std::endl;
+  GetAlfabetoPila().Imprimir();
   std::cout << "Estado inicial: " << estado_inicial_.GetNombre() << std::endl;
   std::cout << "Símbolo inicial de la pila: "
             << simbolo_inicial_pila_.GetSimbolo() << std::endl;
@@ -233,6 +228,14 @@ Alfabeto AutomataPila::GetAlfabetoPila() const {
 }
 
 /**
+ * @brief Devuelve el alfabeto de entrada.
+ * @return Alfabeto de entrada.
+ */
+Alfabeto AutomataPila::GetAlfabetoEntrada() const {
+  return alfabeto_entrada_;
+}
+
+/**
  * @brief Establece el modo traza del autómata.
  * @param kModoTraza Modo traza.
  */
@@ -280,7 +283,7 @@ void AutomataPila::InsertaSimboloEnPila(const Simbolo& kSimbolo, Pila& kPila) co
 bool AutomataPila::EsFinalPorEstadoFinal(const Cadena& kCadena, 
                                        const std::vector<Estado>& kEstadosActuales,
                                        const int kPosicion) const {
-  if (kPosicion == kCadena.GetSimbolos().size()) {
+  if (kPosicion == kCadena.GetSimbolos().size() || kCadena.GetCadena() == ".") {
     for (const Estado& estado : kEstadosActuales) {
       if (estado.EsFinal()) {
         return true;
@@ -402,12 +405,12 @@ void AutomataPila::ImprimirTraza(const Estado& kEstadoActual,
   std::cout << "Cadena: ";
   for (int iterador = 0; iterador < kCadena.GetSimbolos().size(); ++iterador) {
     if (iterador == kPosicionPuntero) {
-      std::cout << "|";
+      std::cout << "\033[0;31m|\033[0m";
     }
     std::cout << kCadena.GetSimbolos()[iterador].GetSimbolo();
   }
   if (kPosicionPuntero == kCadena.GetSimbolos().size()) {
-    std::cout << "|";
+    std::cout << "\033[0;31m|\033[0m";
   }
   std::cout << std::endl;
   std::cout << "Pila: ";
@@ -416,7 +419,7 @@ void AutomataPila::ImprimirTraza(const Estado& kEstadoActual,
   for (const Transicion& transicion : kPosiblesTransiciones) {
     transicion.Imprimir();
   }
-  std::cout << std::endl;
+  std::cout << "----------------------" << std::endl;
 }
 
 

@@ -36,6 +36,7 @@ class AutomataPila {
   Estado GetEstado(const std::string& kNombre) const;
   Simbolo GetSimboloInicialPila() const;
   Alfabeto GetAlfabetoPila() const;
+  Alfabeto GetAlfabetoEntrada() const;
   void SetModoTraza(const bool kModoTraza);
 
   bool ProcesarCadena(const Cadena& kCadena);

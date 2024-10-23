@@ -55,7 +55,7 @@ Simbolo Transicion::GetSimboloPilaResultante() const { return simbolo_pila_resul
  * @brief Imprime la información de la transición.
  */
 void Transicion::Imprimir() const {
-  std::cout << estado_origen_ << " " << simbolo_entrada_.GetSimbolo() << " "
+  std::cout << "(" << estado_origen_ << " " << simbolo_entrada_.GetSimbolo() << " "
             << simbolo_pila_.GetSimbolo() << " " << estado_destino_ << " "
-            << simbolo_pila_resultante_.GetSimbolo() << std::endl;
+            << simbolo_pila_resultante_.GetSimbolo() << ")" << std::endl;
 }

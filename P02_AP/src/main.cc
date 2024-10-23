@@ -17,7 +17,8 @@
 int main(int argc, char* argv[]) {
   InstruccionesDeUso(argc, argv);
   AutomataPila automata{ExtraerInformacionAutomataPiLa(argv[1], true)};
-  // automata.Imprimir();
+  automata.Imprimir();
+  std::cout << std::endl;
   // automata.ImprimirTransicionesPorEstado();
   std::string cadena;
   std::cout << "Modo traza (\033[32ms\033[0m/\033[31mn\033[0m): ";
