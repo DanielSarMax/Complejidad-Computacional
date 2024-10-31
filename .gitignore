@@ -1,0 +1,45 @@
+# Ignorar archivos de compilación
+*.o
+*.out
+*.class
+*.exe
+*.dll
+
+# Ignorar directorios de dependencias
+/node_modules/
+/vendor/
+
+# Ignorar archivos de configuración de IDE
+/.idea/
+/.vscode/
+/*.sublime-workspace
+/*.sublime-project
+
+# Ignorar archivos de log
+*.log
+
+# Ignorar archivos temporales
+*.tmp
+*.temp
+*.bak
+
+# Ignorar archivos de sistema
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Ignorar archivos de entornos virtuales de Python
+/env/
+.venv/
+__pycache__/
+
+# Ignorar archivos de configuración de Python
+*.pyc
+*.pyo
+*.pyd
+
+# Ignorar archivos de distribución de Python
+*.egg
+*.egg-info/
+dist/
+build/
