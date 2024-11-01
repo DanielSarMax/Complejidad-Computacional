@@ -27,6 +27,14 @@ Alfabeto::Alfabeto(const std::set<Simbolo>& kAlfabeto) {
 }
 
 /**
+ * @brief Devuelve el alfabeto.
+ * @return Alfabeto.
+ */
+std::set<Simbolo> Alfabeto::getAlfabeto() const {
+  return alfabeto_;
+}
+
+/**
  * @brief Sobrecarga del operador de inserción.
  * @param os Flujo de salida.
  * @param alfabeto Alfabeto a imprimir.

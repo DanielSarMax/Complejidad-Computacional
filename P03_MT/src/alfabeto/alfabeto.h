@@ -23,6 +23,8 @@ class Alfabeto {
   Alfabeto(const std::set<Simbolo>& kAlfabeto);
 
   friend std::ostream& operator<<(std::ostream& os, const Alfabeto& alfabeto);
+
+  std::set<Simbolo> getAlfabeto() const;
   
  private:
   std::set<Simbolo> alfabeto_;

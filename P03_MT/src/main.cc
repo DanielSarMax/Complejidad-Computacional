@@ -6,7 +6,8 @@
  *
  * @author Daniel David Sarmiento Barrera
  * @since Noviembre 2024
- * @description: 
+ * @description: Programa principal que ejecuta una máquina de Turing
+ *               con una entrada dada por el usuario.
  */
 
 #include <iostream>

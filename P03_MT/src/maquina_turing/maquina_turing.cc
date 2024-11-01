@@ -139,7 +139,7 @@ Estado MaquinaTuring::BuscarEstado(const std::string& kNombreEstado) const {
 /**
  * @brief Ejecuta la máquina de Turing.
  * @param kCadena Cadena a procesar.
- * @return true si la cadena pertenece al lenguaje de la máquina, false en caso contrario.
+ * @return True si la ejecución ha finalizado en un estado final, false en caso contrario.
  */
 bool MaquinaTuring::Ejecutar(const std::string& kCadena) {
   InsertarCadena(kCadena);

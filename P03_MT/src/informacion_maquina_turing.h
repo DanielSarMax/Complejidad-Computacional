@@ -21,6 +21,7 @@ struct InformacionMaquinaTuring {
   std::vector<Estado> estados_;
   Simbolo blanco_;
   int numero_cintas_;
+  Alfabeto alfabeto_movimientos_ = Alfabeto({Simbolo{"L"}, Simbolo{"R"}, Simbolo{"S"}});
 };
 
 #endif

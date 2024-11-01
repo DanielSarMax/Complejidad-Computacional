@@ -81,6 +81,7 @@ std::vector<Transicion> LectorMaquinaTuring::ExtraerInformacionTransiciones(
     std::string estado_origen;
     std::string estado_destino;
     stream >> estado_origen;
+    ValidarEstado(Estado{estado_origen});
     std::vector<TuplaTransicion> tuplas_transicion;
     std::vector<Simbolo> simbolo_actual_cintas;
     std::vector<Simbolo> simbolo_nuevo_cintas;
@@ -89,12 +90,16 @@ std::vector<Transicion> LectorMaquinaTuring::ExtraerInformacionTransiciones(
       std::string simbolo_actual;
       stream >> simbolo_actual;
       simbolo_actual_cintas.push_back(Simbolo{simbolo_actual});
+      ValidarSimbolo(Simbolo{simbolo_actual}, informacion_leida_.alfabeto_cinta_);
     }
     stream >> estado_destino;
+    ValidarEstado(Estado{estado_destino});
     for (int i = 0; i < informacion_leida_.numero_cintas_; i++) {
       std::string simbolo_nuevo;
       std::string movimiento;
       stream >> simbolo_nuevo >> movimiento;
+      ValidarSimbolo(Simbolo{simbolo_nuevo}, informacion_leida_.alfabeto_cinta_);
+      ValidarSimbolo(Simbolo{movimiento}, informacion_leida_.alfabeto_movimientos_);
       simbolo_nuevo_cintas.push_back(Simbolo{simbolo_nuevo});
       movimientos.push_back(Simbolo{movimiento});
     }
@@ -168,15 +173,21 @@ InformacionMaquinaTuring LectorMaquinaTuring::LeerMaquinaTuring() {
     }
   }
   std::vector<Estado> estados = ExtraerEstadosDeFichero(fichero);
+  informacion_leida_.estados_ = estados;
   informacion_leida_.alfabeto_entrada_ = ExtraerSimbolosDeFichero(fichero);
   informacion_leida_.alfabeto_cinta_ = ExtraerSimbolosDeFichero(fichero);
   std::string estado_inicial;
   std::getline(fichero, estado_inicial);
   informacion_leida_.estado_inicial_ = Estado{estado_inicial};
+  ValidarEstado(informacion_leida_.estado_inicial_);
   std::string simbolo_blanco;
   std::getline(fichero, simbolo_blanco);
   informacion_leida_.blanco_ = Simbolo{simbolo_blanco};
+  ValidarSimbolo(informacion_leida_.blanco_, informacion_leida_.alfabeto_cinta_);
   std::vector<Estado> estados_finales = ExtraerEstadosDeFichero(fichero);
+  for (const Estado& estado_final : estados_finales) {
+    ValidarEstado(estado_final);
+  }
   std::string numero_cintas;
   std::getline(fichero, numero_cintas);
   informacion_leida_.numero_cintas_ = std::stoi(numero_cintas);
@@ -187,4 +198,38 @@ InformacionMaquinaTuring LectorMaquinaTuring::LeerMaquinaTuring() {
                     transiciones);
   informacion_leida_.estados_ = estados;
   return informacion_leida_;
+}
+
+/**
+ * @brief Comprueba si un estado es válido.
+ * @param kEstado Estado a comprobar.
+ * @return True si el estado es válido, false en caso contrario.
+ */
+void LectorMaquinaTuring::ValidarEstado(const Estado& kEstado) const {
+  for (const Estado& estado : informacion_leida_.estados_) {
+    if (estado.getNombre() == kEstado.getNombre()) {
+      return;
+    }
+  }
+  std::cerr << "Error: El estado " << kEstado.getNombre() << " no es válido."
+            << std::endl;
+  exit(EXIT_SUCCESS);
+}
+
+/**
+ * @brief Comprueba si un símbolo es válido.
+ * @param kSimbolo Símbolo a comprobar.
+ * @param kAlfabeto Alfabeto de la cinta.
+ * @return True si el símbolo es válido, false en caso contrario.
+ */
+void LectorMaquinaTuring::ValidarSimbolo(const Simbolo& kSimbolo,
+                                         const Alfabeto& kAlfabeto) const {
+  for (const Simbolo& simbolo : kAlfabeto.getAlfabeto()) {
+    if (simbolo.getSimbolo() == kSimbolo.getSimbolo()) {
+      return;
+    }
+  }
+  std::cerr << "Error: El símbolo " << kSimbolo.getSimbolo() << " no es válido."
+            << std::endl;
+  exit(EXIT_SUCCESS);
 }

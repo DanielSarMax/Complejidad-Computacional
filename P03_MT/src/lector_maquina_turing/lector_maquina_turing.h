@@ -26,7 +26,6 @@ class LectorMaquinaTuring {
  public:
   LectorMaquinaTuring();
   LectorMaquinaTuring(const std::string& kNombreFichero);
-
   InformacionMaquinaTuring LeerMaquinaTuring();
   std::vector<Estado> ExtraerEstadosDeFichero(std::ifstream& kFichero) const;
   std::set<Simbolo> ExtraerSimbolosDeFichero(std::ifstream& kFichero) const;
@@ -35,6 +34,8 @@ class LectorMaquinaTuring {
                          std::vector<Estado>& kEstados,
                          std::vector<Estado>& kEstadosFinales,
                          std::vector<Transicion>& kTransiciones) const;
+  void ValidarEstado(const Estado& kEstado) const;
+  void ValidarSimbolo(const Simbolo& kSimbolo, const Alfabeto& kAlfabeto) const;
 
  private:
   std::string nombre_fichero_;
