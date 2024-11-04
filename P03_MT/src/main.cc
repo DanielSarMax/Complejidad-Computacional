@@ -27,15 +27,33 @@ int main(int argc, char* argv[]) {
                                informacion_maquina_turing.numero_cintas_};
   std::cout << maquina_turing << std::endl;
   std::string cadena_a_procesar;
-  std::cout << "Introduzca la cadena a procesar: ";
-  std::cin >> cadena_a_procesar;
-  if (maquina_turing.Ejecutar(cadena_a_procesar)) {
-    std::cout << "La máquina de Turing ha parado en un estado de aceptación."
-              << std::endl;
-  } else {
-    std::cout << "La máquina de Turing ha parado en un estado de rechazo."
-              << std::endl;
+  while (true) {
+    std::cout << "Elija una opción: " << std::endl;
+    std::cout << "1. Introducir cadena" << std::endl;
+    std::cout << "2. Salir" << std::endl;
+    int opcion;
+    std::cin >> opcion;
+    std::string cadena_a_procesar;
+    switch (opcion) {
+      case 1:
+        std::cout << "Introduzca la cadena a procesar: ";
+        std::cin >> cadena_a_procesar;
+        if (maquina_turing.Ejecutar(cadena_a_procesar)) {
+            std::cout << "La máquina de Turing ha parado en un estado de \033[1;32maceptación\033[0m."
+                << std::endl;
+        } else {
+            std::cout << "La máquina de Turing ha parado en un estado de \033[1;31mrechazo\033[0m."
+                << std::endl;
+        }
+        maquina_turing.ImprimirCintas();
+        std::cout << std::endl;
+        break;
+      case 2:
+        return 0;
+      default:
+        std::cerr << "Error: Opción no válida." << std::endl;
+        return 0;
+    }
   }
-  maquina_turing.ImprimirCintas();
   return 0;
 }

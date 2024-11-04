@@ -122,6 +122,15 @@ void MaquinaTuring::InsertarCadena(const std::string& kCadena) {
 }
 
 /**
+ * @brief Resetea las cintas de la máquina.
+ */
+void MaquinaTuring::ResetearCintas() {
+  for (int i = 0; i < numero_cintas_; i++) {
+    cintas_[i] = Cinta({}, blanco_);
+  }
+}
+
+/**
  * @brief Busca un estado en la máquina.
  * @param kNombreEstado Nombre del estado a buscar.
  * @return Estado.
@@ -142,6 +151,7 @@ Estado MaquinaTuring::BuscarEstado(const std::string& kNombreEstado) const {
  * @return True si la ejecución ha finalizado en un estado final, false en caso contrario.
  */
 bool MaquinaTuring::Ejecutar(const std::string& kCadena) {
+  ResetearCintas();
   InsertarCadena(kCadena);
   Estado estado_actual = estado_inicial_;
   while (true) {

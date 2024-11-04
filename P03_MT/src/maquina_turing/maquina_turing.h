@@ -36,8 +36,6 @@ class MaquinaTuring {
   int getNumeroCintas() const;
   std::vector<Cinta> getCintas() const;
   bool Ejecutar(const std::string& kCadena);
-  void InsertarCadena(const std::string& kCadena);
-  Estado BuscarEstado(const std::string& kNombreEstado) const;
   void ImprimirCintas() const;
   friend std::ostream& operator<<(std::ostream& os, const MaquinaTuring& kMaquinaTuring);
 
@@ -49,6 +47,10 @@ class MaquinaTuring {
   std::vector<Cinta> cintas_;
   Simbolo blanco_;
   int numero_cintas_;
+
+  void ResetearCintas();
+  void InsertarCadena(const std::string& kCadena);
+  Estado BuscarEstado(const std::string& kNombreEstado) const;
 };
 
 #endif
