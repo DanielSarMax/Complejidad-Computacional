@@ -31,6 +31,7 @@ int main(int argc, char* argv[]) {
     std::cout << "Elija una opción: " << std::endl;
     std::cout << "1. Introducir cadena" << std::endl;
     std::cout << "2. Salir" << std::endl;
+    std::cout << "-> ";
     int opcion;
     std::cin >> opcion;
     std::string cadena_a_procesar;

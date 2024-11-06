@@ -107,18 +107,16 @@ std::vector<Cinta> MaquinaTuring::getCintas() const {
 }
 
 /**
- * @brief Inserta una cadena en la/as cinta/as de la máquina.
+ * @brief Inserta una cadena en la primera cinta de la máquina.
  * @param kCadena Cadena a insertar.
  */
 void MaquinaTuring::InsertarCadena(const std::string& kCadena) {
-  for (int i = 0; i < numero_cintas_; i++) {
-    std::vector<Simbolo> cinta;
-    for (const char& caracter : kCadena) {
-      cinta.push_back(Simbolo{std::string(1, caracter)});
-    }
-    cinta.push_back(blanco_);
-    cintas_[i] = Cinta{cinta, blanco_};
+  std::vector<Simbolo> cinta;
+  for (const char& caracter : kCadena) {
+    cinta.push_back(Simbolo{std::string(1, caracter)});
   }
+  cinta.push_back(blanco_);
+  cintas_[0] = Cinta{cinta, blanco_};
 }
 
 /**

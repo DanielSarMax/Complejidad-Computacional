@@ -18,6 +18,7 @@ Cinta::Cinta() {
   cinta_ = {};
   posicion_cabeza_ = 0;
   blanco_ = Simbolo{"_"};
+  cinta_.push_back(blanco_);
 }
 
 /**
@@ -30,6 +31,7 @@ Cinta::Cinta(const std::vector<Simbolo>& kCinta,
   cinta_ = kCinta;
   blanco_ = kBlanco;
   posicion_cabeza_ = kPosicionCabeza;
+  cinta_.push_back(blanco_);
 }
 
 /**
@@ -90,8 +92,12 @@ void Cinta::Escribir(const Simbolo& kSimbolo) {
  */
 std::ostream& operator<<(std::ostream& os, const Cinta& kCinta) {
   os << "[";
-  for (const auto& symbol : kCinta.cinta_) {
-    os << symbol << " | ";
+  for (int iterador{0}; iterador < int(kCinta.getCinta().size()); iterador++) {
+    std::string simbolo = kCinta.getCinta()[iterador].getSimbolo();
+    if (iterador == kCinta.getPosicionCabeza()) {
+      simbolo = "\033[1;31m" + simbolo + "\033[0m";
+    }
+    os << simbolo << " | ";
   }
   os << "]";
   return os;
