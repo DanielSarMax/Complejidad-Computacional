@@ -67,6 +67,7 @@ make
 1. MT que reconozca el lenguaje L = { a^n b^m | m > n, n ≥ 0 }
 
 - [JFLAP_MT1](./JFLAP/MT1.jff)
+- [Ejercicio1.txt](./ficheros_prueba/Ejercicio1.txt)
 
 <p align="center">
   <img src="images/MT1.png" />
@@ -74,7 +75,10 @@ make
 
 2. MT que reciba como parámetro una cadena compuesta por símbolos ‘a’ y ‘b’. La MT debe sustituir la cadena por el número de símbolos ‘b’, seguido del número de símbolos ‘a’ separados por un símbolo blanco.
 
+    `NOTA`: Máquina arreglada, el resultado se muestra en la primera cinta.
+
 - [JFLAP_MT2](./JFLAP/MT2.jff)
+- [Ejercicio2.txt](./ficheros_prueba/Ejercicio2.txt)
 
     El número se codificará como n = 1^n. La cabeza de L/E se quedará al principio del resultado:
 
